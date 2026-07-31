@@ -1,95 +1,90 @@
-# Spaceship Titanic - Machine Learning Project
+# Disaster Tweet Classification using DistilBERT
 
-## Overview
+## 📌 Project Overview
 
-This project predicts whether passengers aboard the Spaceship Titanic were transported to an alternate dimension. The solution follows a complete machine learning workflow, including data exploration, feature engineering, preprocessing, model training, evaluation, hyperparameter tuning, and Kaggle submission.
-
----
-
-## Dataset
-
-The dataset contains passenger information such as:
-
-- HomePlanet
-- CryoSleep
-- Cabin
-- Destination
-- Age
-- VIP
-- RoomService
-- FoodCourt
-- ShoppingMall
-- Spa
-- VRDeck
-- Name
-
-**Target Variable:**
-- `Transported` (True / False)
+This project focuses on classifying tweets as **real disaster-related** or **non-disaster** using Natural Language Processing (NLP) and Deep Learning. The project includes Exploratory Data Analysis (EDA), text preprocessing, and fine-tuning the DistilBERT transformer model to perform binary text classification.
 
 ---
 
-## Project Workflow
+## 🎯 Objectives
 
-### 1. Exploratory Data Analysis (EDA)
+- Analyze the disaster tweet dataset using Exploratory Data Analysis (EDA).
+- Preprocess textual data for transformer-based models.
+- Fine-tune the DistilBERT model for binary classification.
+- Evaluate model performance using standard classification metrics.
 
-- Dataset inspection
+---
+
+## 📂 Project Structure
+
+```
+├── EDA.ipynb                        # Data analysis and visualization
+├── DistilBERT_DisasterTweets.ipynb  # Model training and evaluation
+├── README.md
+└── dataset/
+    ├── train.csv
+    └── test.csv
+```
+
+---
+
+## 📊 Dataset
+
+The project uses the **Natural Language Processing with Disaster Tweets** dataset.
+
+Each record contains:
+
+- **id** – Unique tweet identifier
+- **keyword** – Disaster-related keyword
+- **location** – User location (optional)
+- **text** – Tweet content
+- **target** – Label
+  - 0 → Not a disaster tweet
+  - 1 → Real disaster tweet
+
+---
+
+## 🔍 Exploratory Data Analysis (EDA)
+
+The EDA notebook includes:
+
+- Dataset overview
 - Missing value analysis
-- Statistical summary
-- Target distribution
+- Class distribution
+- Tweet length analysis
+- Word frequency analysis
 - Data visualization
-
-### 2. Feature Engineering
-
-Created additional features to improve model performance:
-
-- Deck
-- Cabin Number
-- Cabin Side
-- Passenger Group
-- Family Size
-- Total Spend
-- No Spending Indicator
-
-Final feature count: **16**
+- Basic text cleaning
 
 ---
 
-### 3. Data Preprocessing
+## ⚙️ Data Preprocessing
 
-- Missing value imputation
-  - Median (Numerical)
-  - Most Frequent (Categorical)
-- One-Hot Encoding
-- Scikit-learn Pipeline
-- ColumnTransformer
+The preprocessing pipeline includes:
 
----
-
-### 4. Models Evaluated
-
-| Model | Validation Accuracy |
-|--------|--------------------:|
-| Random Forest | 79.41% |
-| XGBoost | 81.31% |
-| CatBoost | 80.33% |
-| Tuned XGBoost | **81.54%** |
-
-Hyperparameter tuning was performed using **RandomizedSearchCV** to improve the XGBoost model.
+- Lowercase conversion
+- Removal of URLs
+- Removal of special characters
+- Tokenization using DistilBERT Tokenizer
+- Padding and truncation
+- Attention mask generation
 
 ---
 
-## Model Evaluation
+## 🤖 Model
 
-| Metric | Value |
-|---------|-------|
-| Cross Validation (Mean) | 0.8016 |
-| Cross Validation (Std) | 0.0105 |
-| Validation Accuracy | 0.8154 |
-| Kaggle Public Score | 0.80126 |
+The project uses **DistilBERT**, a lightweight version of BERT developed by Hugging Face.
+
+### Model Features
+
+- Pre-trained Transformer Architecture
+- Context-aware text embeddings
+- Fine-tuned for binary text classification
+- Faster training than BERT while maintaining high accuracy
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - Python
 - Pandas
@@ -97,57 +92,100 @@ Hyperparameter tuning was performed using **RandomizedSearchCV** to improve the 
 - Matplotlib
 - Seaborn
 - Scikit-learn
-- XGBoost
-- CatBoost
-- Joblib
+- PyTorch
+- Hugging Face Transformers
+- Google Colab / Jupyter Notebook
 
 ---
 
-## Project Structure
+## 📈 Model Evaluation
 
-```
-Spaceship_Titanic_Project/
-│
-├── data/
-│   ├── train.csv
-│   ├── test.csv
-│   └── sample_submission.csv
-│
-├── notebook/
-│   └── Spaceship_Titanic.ipynb
-│
-├── outputs/
-│   └── submission.csv
-│
-├── models/
-│
-├── README.md
-│
-└── requirements.txt
+The trained model is evaluated using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Confusion Matrix
+
+---
+
+## 🚀 How to Run
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/yourusername/disaster-tweet-classification.git
+cd disaster-tweet-classification
 ```
 
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+or
+
+```bash
+pip install transformers torch datasets pandas numpy matplotlib seaborn scikit-learn
+```
+
+### 3. Run the Notebooks
+
+Open Jupyter Notebook or Google Colab and execute:
+
+1. `EDA.ipynb`
+2. `DistilBERT_DisasterTweets.ipynb`
+
 ---
 
-## Results
+## 📌 Workflow
 
-- Built and compared multiple machine learning models.
-- Improved performance through feature engineering and hyperparameter tuning.
-- Achieved a **validation accuracy of 81.54%**.
-- Achieved a **Kaggle public leaderboard score of 0.80126**.
+```
+Dataset
+     │
+     ▼
+Exploratory Data Analysis
+     │
+     ▼
+Text Cleaning
+     │
+     ▼
+Tokenization
+     │
+     ▼
+DistilBERT Fine-Tuning
+     │
+     ▼
+Prediction
+     │
+     ▼
+Performance Evaluation
+```
 
 ---
 
-## Future Improvements
+## 📚 Future Improvements
 
-- Advanced feature engineering
-- Ensemble learning
-- Bayesian hyperparameter optimization
-- Native categorical handling with CatBoost
+- Hyperparameter tuning
+- Data augmentation
+- Cross-validation
+- Deploy using Streamlit or Flask
+- Compare DistilBERT with BERT, RoBERTa, and ALBERT
 
 ---
 
-## Author
+## 👩‍💻 Author
 
-**Bhavanitha R**
+**Bhavanitha**
 
-Machine Learning Project – Spaceship Titanic Classification
+Final Year B.Tech CSE (Artificial Intelligence & Machine Learning)
+
+Aspiring AI/ML Engineer | Machine Learning | Deep Learning | Natural Language Processing
+
+---
+
+## 📄 License
+
+This project is developed for educational and research purposes.
